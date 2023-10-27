@@ -2,18 +2,29 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [firstName,setFirtName] = useState("");
+  const [Name,setName] = useState({firstName: "",lastName:""});
 
-  function toggle(event){
-    setFirtName(event.target.value)
+  function toggleName(event){
+    setName(prevName => {
+      return{
+        ...prevName,
+        [event.target.name]:event.target.value
+      }
+        
+      
+      
+    })
   }
+
+  
   
 
   return (
     <>
       <form>
-      {console.log(firstName)}
-        <input type="text" placeholder='enter first name' onChange={toggle}></input>
+      {console.log(Name.firstName,Name.lastName)}
+        <input name="firstName" type="text" placeholder='enter first name' onChange={toggleName}></input>
+        <input name="lastName" type="text" placeholder='enter first name' onChange={toggleName}></input>
       </form>
     </>
   )
